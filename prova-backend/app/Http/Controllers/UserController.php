@@ -56,11 +56,9 @@ class UserController extends Controller
         }
     }
 
-    public function update(UpdateUserRequest $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::find($id);
-
-        if ($user) {
+        
             $validated = $request->validated();
             $user->update($validated);
     
@@ -68,9 +66,7 @@ class UserController extends Controller
                 'message' => 'Usuari actualitzat correctament',
                 'usuari' => $user
             ]);
-        } else {
-            return response()->json(['message' => 'Usuari no trobat'], 404);
-        }
+        
     }
 
     public function destroy(string $id)
