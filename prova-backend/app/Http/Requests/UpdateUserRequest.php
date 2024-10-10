@@ -22,7 +22,7 @@ class UpdateUserRequest extends FormRequest
                 'nullable', 
                 'email', 
                 'max:70', 
-                Rule::unique('users')->ignore($this->route('user'))
+                Rule::unique('users')->ignore($id)
                  ]
     ];}
 }

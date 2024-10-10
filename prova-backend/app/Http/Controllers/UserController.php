@@ -55,15 +55,27 @@ class UserController extends Controller
         }
     }
 
-
     public function update(UpdateUserRequest $request, string $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            
+            $user->nom = $request->input('nom');
+            $user->cognom = $request->input('cognom');
+            $user->telefon = $request->input('telefon');
+            $user->edat = $request->input('edat');
+            $user->email = $request->input('email');
+
+            $user->save();
+            return response()->json([
+                'message' => 'Usuari actualitzat correctament',
+                'usuari' => $user
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Usuari no trobat'], 404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
