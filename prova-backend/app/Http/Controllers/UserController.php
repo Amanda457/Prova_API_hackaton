@@ -78,6 +78,14 @@ class UserController extends Controller
 
     public function destroy(string $id)
     {
-        //
+    try{
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return response()->json(['message' => 'Usuari eliminat satisfactòriament']);
+        
+    } catch (ModelNotFoundException $e) {
+        return response()->json(['message' => 'Usuari no trobat'], 404);
     }
+}
 }
