@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Http\Requests\StoreActivityRequest;
+use App\Models\User;
 
 class ActivityController extends Controller
 {
@@ -37,5 +38,21 @@ class ActivityController extends Controller
         ]);
     }
 
-   
+    public function bookActivity(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $activityId = $request->input('activity_id');
+
+        try {
+            $user = $this->findUserOrFail($userId);
+            $activity = Activity::findOrFail($activityId);
+            $activity->reserve($userId);
+
+            return response()->json(['message' => 'Reserva creada correctamente']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Actividad no encontrada'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }
