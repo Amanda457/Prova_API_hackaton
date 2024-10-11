@@ -2,7 +2,9 @@
 
 ## Descripció
 
-Aquest projecte és una API, la qual ens permet registrar usuaris i gestionar les seves dades, com actualitzar informació, mostrar-la o eliminar l'usuari, registrar activitats, mostrar-les, i apuntar a usuaris a les activitats. Tot això treballant amb format JSON i base de dades.
+Aquest projecte és una API pensada per a un gestor intern, és a dir, per a que la persona que doni atenció al client, gestioni totes les dades però no sigui web pública, sino un aplicatiu.
+
+Aquesta API ens permet registrar usuaris i gestionar les seves dades, com actualitzar informació, mostrar-la o eliminar l'usuari, registrar activitats, mostrar-les, i apuntar a usuaris a les activitats. Tot això treballant amb format JSON i base de dades.
 
 
 ## Instal·lació
