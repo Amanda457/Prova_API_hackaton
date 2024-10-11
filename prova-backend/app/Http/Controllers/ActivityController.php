@@ -31,7 +31,7 @@ class ActivityController extends Controller
             
              $activity->save();
             return response()->json([
-            'message' => 'Usuari registrat correctament',
+            'message' => 'Activitat registrada correctament',
             'activitat' => $activity
         ]);
     }
