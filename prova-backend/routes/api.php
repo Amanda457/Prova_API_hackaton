@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/activities', [ActivityController::class, 'store']);
 Route::get('/activities', [ActivityController::class, 'showAll']);
+Route::post('/activities/book', [ActivityController::class, 'bookActivity']);
