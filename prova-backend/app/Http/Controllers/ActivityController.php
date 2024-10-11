@@ -56,4 +56,19 @@ class ActivityController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+
+    public function importActivities(Request $request) {
+       
+        $request->validate(['file' => 'required|file|mimes:json']);
+    
+        $jsonContent = file_get_contents($request->file('file')->getRealPath());
+        $activitiesData = json_decode($jsonContent, true);
+    
+        foreach ($activitiesData as $activity) {
+            Activity::create($activity);
+        }
+
+        return response()->json(['message' => 'Activitats importedes correctament'], 200);
+    }
+    
 }
