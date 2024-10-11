@@ -17,4 +17,24 @@ class Activity extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function reserve($userId){
+
+        $user = User::find($userId);
+
+        if (!$user) {
+            return ['success' => false, 'message' => 'Usuari no trobat',];
+        }
+
+        if ($this->users()->where('user_id', $userId)->exists()) {
+            return ['success' => false, 'message' => 'Ja esta feta aquesta reserva',];
+        }
+
+        $this->users()->attach($userId);
+
+        return [
+            'success' => true,
+            'message' => 'Reserva realitzada correctament',
+        ];
+    }
 }
