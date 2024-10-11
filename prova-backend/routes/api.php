@@ -15,3 +15,7 @@ Route::get('/activities', [ActivityController::class, 'showAll']);
 Route::post('/activities/book', [ActivityController::class, 'bookActivity']);
 Route::post('/activities/import', [ActivityController::class, 'importActivities']);
 Route::get('/activities/export', [ActivityController::class, 'showAll']);
+
+Route::fallback(function () {
+    return response()->json(['message' => 'Aquesta ruta no obté coincidències'], 404);
+});
