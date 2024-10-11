@@ -21,20 +21,19 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreActivityRequest $request)
     {
-        //
-    }
+        $activity = new Activity;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+             $activity->nom = $request->input('nom');
+             $activity->descripcio = $request->input('descripcio');
+             $activity->capacitat_maxima = $request->input('capacitat_maxima');
+            
+             $activity->save();
+            return response()->json([
+            'message' => 'Usuari registrat correctament',
+            'activitat' => $activity
+        ]);
     }
 
     /**
