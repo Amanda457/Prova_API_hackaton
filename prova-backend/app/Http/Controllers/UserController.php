@@ -22,27 +22,13 @@ class UserController extends Controller
     
     public function store(StoreUserRequest $request)
     {
-        try{
-            $user = new User;
+            $user = User::create($request->validated());
 
-             $user->nom = $request->input('nom');
-             $user->cognom = $request->input('cognom');
-             $user->telefon = $request->input('telefon');
-             $user->edat = $request->input('edat');
-             $user->email = $request->input('email');
-
-             $user->save();
             return response()->json([
-            'message' => 'Usuari registrat correctament',
-            'usuari' => $user
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'message' => 'Error al registrar usuari',
-            'error' => $e->getMessage(),
-        ], 500);
+                'message' => 'Usuari registrat correctament',
+                'usuari' => $user
+            ], 201);
     }
-}
     
     public function show(string $id)
     {
@@ -59,7 +45,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, string $id)
     {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $validated = $request->validated();
             $user->update($validated);
     

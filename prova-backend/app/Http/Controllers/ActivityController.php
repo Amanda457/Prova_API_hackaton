@@ -45,15 +45,13 @@ class ActivityController extends Controller
         $activityId = $request->input('activity_id');
 
         try {
-            $user = $this->findUserOrFail($userId);
+            $user = User::findOrFail($userId);
             $activity = Activity::findOrFail($activityId);
             $activity->reserve($userId);
 
-            return response()->json(['message' => 'Reserva creada correctamente']);
+            return response()->json(['message' => 'Reserva creada correctament']);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Actividad no encontrada'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 400);
+            return response()->json(['message' => 'Activitat o usuari no trobat'], 404);
         }
     }
 
@@ -69,6 +67,5 @@ class ActivityController extends Controller
         }
 
         return response()->json(['message' => 'Activitats importedes correctament'], 200);
-    }
-    
+    }    
 }
