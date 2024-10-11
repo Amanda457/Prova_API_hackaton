@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\StoreActivityRequest;
 use App\Models\User;
 
