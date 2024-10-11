@@ -12,7 +12,7 @@ class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            'nom' => $this->faker->word(),
+            'nom' => $this->faker->lexify('??'), 
             'descripcio' => $this->faker->sentence(45),
             'capacitat_maxima' => $this->faker->numberBetween(5, 50),
         ];

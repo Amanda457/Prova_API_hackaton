@@ -16,8 +16,8 @@ class UserFactory extends Factory
         return [
             'nom' => $this->faker->firstName(),
             'cognom' => $this->faker->lastName(),
-            'telefon' => $this->faker->phoneNumber(),
-            'edat' => $this->faker->numberBetween(0, 99), // Edad entre 18 y 65
+            'telefon' => $this->faker->numberBetween(000000000, 999999999),
+            'edat' => $this->faker->numberBetween(0, 99),
             'email' => $this->faker->unique()->safeEmail(),
         ];
     }
